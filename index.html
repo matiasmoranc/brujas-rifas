@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rifa - Números vendidos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 15px;
+      background: #222;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+    }
+
+    header p {
+      margin: 0;
+      color: #ddd;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .summary {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .summary div {
+      background: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .summary strong {
+      display: block;
+      font-size: 28px;
+    }
+
+    .summary span {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+      gap: 10px;
+    }
+
+    .number {
+      border: none;
+      padding: 18px 0;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #ffffff;
+      color: #222;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .number:hover {
+      background: #e9f5ff;
+    }
+
+    .number.sold {
+      background: #ffdddd;
+      color: #a10000;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 400px;
+      padding: 25px;
+      border-radius: 12px;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #saveBtn {
+      background: #222;
+      color: white;
+    }
+
+    .secondary {
+      background: #ddd;
+    }
+  </style>
+
+  <header>
+    <h1>Rifa</h1>
+    <p>Seleccioná un número libre para marcarlo como vendido.</p>
+  </header>
+
+
+
+  <main>
+    <section class="summary">
+      <div>
+        <strong id="soldCount">0</strong>
+        <span>Vendidos</span>
+      </div>
+      <div>
+        <strong id="availableCount">0</strong>
+        <span>Disponibles</span>
+      </div>
+    </section>
+
+    <section id="numbersGrid" class="numbers-grid"></section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Número <span id="selectedNumber"></span></h2>
+
+      <label>Nombre</label>
+      <input type="text" id="buyerName" placeholder="Ej: Juan" />
+
+      <label>Apellido</label>
+      <input type="text" id="buyerLastName" placeholder="Ej: Pérez" />
+
+      <label>Teléfono</label>
+      <input type="tel" id="buyerPhone" placeholder="Ej: 099123456" />
+
+      <div class="modal-actions">
+        <button id="cancelBtn" class="secondary">Cancelar</button>
+        <button id="saveBtn">Marcar como vendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="index.js"></script>
+</body>
+
+</html>
